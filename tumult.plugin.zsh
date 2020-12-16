@@ -83,21 +83,24 @@ if [[ "$(uname -s)" = "Darwin" ]]; then
   # Deal with some things macOS userland is missing
 
   # Canonical hex dump; some systems have this symlinked
-  command -v hd > /dev/null || \
-    command -v hexdump > /dev/null && \
-    alias hd="hexdump -C"
+  command -v hd > /dev/null ||
+    {
+      command -v hexdump > /dev/null && alias hd="hexdump -C"
+    }
 
   # macOS has no `md5sum`, so use `md5` as a fallback if it hasn't been
   # been installed with brew/macports/fink
-  command -v md5sum > /dev/null || \
-    command -v md5 > /dev/null && \
-    alias md5sum=$(which md5)
+  command -v md5sum > /dev/null ||
+    {
+      command -v md5 > /dev/null && alias md5sum=$(which md5)
+    }
 
   # macOS has no `sha1sum`, so use `shasum` as a fallback if it hasn't been
   # been installed with brew/macports/fink
-  command -v sha1sum > /dev/null || \
-    command -v shasum > /dev/null && \
-    alias sha1sum=$(which shasum)
+  command -v sha1sum > /dev/null ||
+    {
+      command -v shasum > /dev/null && alias sha1sum=$(which shasum)
+    }
 
   # Deal with staleness in macOS userland.
   # Apple never seems to be very current with the versions of things in userland, so
