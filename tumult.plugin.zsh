@@ -120,7 +120,7 @@ if [[ "$(uname -s)" = "Darwin" ]]; then
   # Sue me, I like vim. Got tired of different *nix stuffing it in different
   # places, so go through the usual suspects and create an alias when we find
   # it.
-  if [[ -x "${EDITOR}" || -n "$(alias vi vim)" ]]; then
+  if [[ -n ${EDITOR} || -n "$(alias vi vim)" ]]; then
     :
   else
     if [ -x /bin/vim ]; then
